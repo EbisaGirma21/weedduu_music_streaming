@@ -7,7 +7,7 @@ from .serializers import UserSerializer
 from django.contrib.auth import get_user_model
 
 
-User = get_user_model()  # This will ensure that you are using your custom User model
+User = get_user_model()  
 
 
 @api_view(['POST'])
@@ -33,7 +33,7 @@ def signup(request):
 
 @api_view(['GET'])
 def get_users(request):
-    users = User.objects.filter(is_superuser=False)
+    users = User.objects.filter()
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data)
 
