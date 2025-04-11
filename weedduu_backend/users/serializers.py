@@ -27,14 +27,15 @@ class UserCreateSerializer(serializers.ModelSerializer):
         return value
     
 class CustomUserUpdateSerializer(UserSerializer):
+    first_name = serializers.CharField(required=False)
+    country = serializers.CharField(required=False)
     class Meta(UserSerializer.Meta):
         model = User
-        fields = ('first_name', 'last_name', 'date_of_birth', 'profile_picture', 'bio', 'country')
+        fields = ('first_name','username','email', 'last_name', 'date_of_birth', 'profile_picture', 'bio', 'country')
         read_only_fields = ('id', 'email', 'phone_number')
 
     def is_valid(self, raise_exception=False):
-        const = super().is_valid(raise_exception)
-        
+        const = super().is_valid(raise_exception=raise_exception)      
         print("is_valid() method is called to validate the data")
         return const
 

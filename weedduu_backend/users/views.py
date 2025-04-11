@@ -12,7 +12,7 @@ from datetime import timedelta
 import uuid, random
 from jinja2 import Template
 from .mail_templates import mail_template
-from .serializers import CustomUserSerializer, UserVerifyOTPCodeSerializer
+from .serializers import CustomUserSerializer, CustomUserUpdateSerializer, UserVerifyOTPCodeSerializer
 from rest_framework_simplejwt.token_blacklist.models import OutstandingToken
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.core.exceptions import ValidationError
@@ -157,7 +157,7 @@ def user_detail(request, pk):
     elif request.method == 'PUT':
         try:
             user = User.objects.get(pk=pk)
-            serializer = CustomUserSerializer(user, data=request.data)
+            serializer = CustomUserUpdateSerializer(user, data=request.data)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_200_OK)
