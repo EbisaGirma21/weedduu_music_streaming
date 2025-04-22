@@ -30,8 +30,11 @@ SECRET_KEY = 'django-insecure-b7v4-4r+z3k#^(x@)6c6^-et2)u32!y@+3(^rlmu^g(*!+ud8r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    'weedduu-music-streaming.onrender.com',
+    'localhost',
+    '127.0.0.1'
+]
 
 # Application definition
 
